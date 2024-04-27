@@ -1,0 +1,70 @@
+//Queue using Array List
+
+ class Queue{
+    private int arr[];
+    private int start,end,cnt,maxsize;
+    public Queue(int maxsize){
+        this.maxsize = maxsize;
+        arr = new int[maxsize];
+        start =-1;
+        end=-1;
+        cnt=0;
+    }
+    public void push(int data){
+        //first element
+        if(cnt==maxsize){
+            System.out.println("Queue is full");
+        }
+        if(start==-1){
+            start=0;
+            end=0;
+        }
+        else if(cnt<maxsize) {
+            end = (end+1)% maxsize ;
+        }
+        arr[end]=data;
+        cnt++;
+    }
+    public int pop(){
+        //array is empty
+        if(start==-1){
+            System.out.println("Array is empty");
+        }
+        int popped= arr[start];
+        if(cnt==1){
+            start=-1;
+        }
+        else{
+            start =(start+1)% maxsize;
+        }
+        cnt--;
+        return popped;
+    
+    }
+    public int top(){
+        if(start==-1){
+            return -1;
+        }
+        return arr[start];
+    }
+    public int size(){
+        return cnt;
+    }
+    
+}
+public class Main
+{
+	public static void main(String[] args) {
+	Queue q = new Queue(4);
+    q.push(8);
+    q.push(6);
+    q.push(5);
+    q.push(1);
+    System.out.println("The peek of the queue before deleting any element " + q.top());
+        System.out.println("The size of the queue before deletion " + q.size());
+        System.out.println("The first element to be deleted " + q.pop());
+        System.out.println("The peek of the queue after deleting an element " + q.top());
+        System.out.println("The size of the queue after deleting an element " + q.size());
+		
+	}
+}
