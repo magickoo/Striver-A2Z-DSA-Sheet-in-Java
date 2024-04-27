@@ -1,0 +1,6 @@
+Stack<Character> stack = new Stack<>();
+stack.push();
+stack.isEmpty();
+stack.pop();
+stack.peep();
+
