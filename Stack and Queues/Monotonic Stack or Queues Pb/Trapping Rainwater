@@ -1,0 +1,25 @@
+//Brute Force
+class Solution {
+    public int trap(int[] height) {
+        int n= height.length;
+        
+        int TrappedWater = 0;
+        for(int i=0;i<n;i++){
+            int LeftMax = 0;
+        int RightMax = 0;
+            int j=i;
+            while(j>=0){
+                LeftMax = Math.max(LeftMax,height[j]);
+                j--;
+            }
+            j=i;
+            while(j<n){
+                RightMax = Math.max(RightMax,height[j]);
+                j++;
+            }
+            TrappedWater += Math.min(LeftMax,RightMax) - height[i];
+
+        }
+        return TrappedWater;
+    }
+}
