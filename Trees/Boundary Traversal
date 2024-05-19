@@ -1,0 +1,97 @@
+//{ Driver Code Starts
+
+
+
+//User function Template for Java
+
+// class Node  
+// { 
+//     int data; 
+//     Node left, right; 
+   
+//     public Node(int d)  
+//     { 
+//         data = d; 
+//         left = right = null; 
+//     } 
+// }
+
+class Solution
+
+{
+    boolean isleaf(Node node){
+        return (node.left == null && node.right == null);
+    }
+    void left(Node node,List<Integer> res){
+        Node curr = node.left;
+        while(curr !=null){
+            
+        
+        if(!isleaf(curr)){
+            res.add(curr.data);
+        }
+        if(curr.left!=null){
+            curr=curr.left;
+            
+        }
+        else{
+            curr = curr.right;
+        }
+        }
+    }
+    void right(Node node,List<Integer> res){
+        Node curr = node.right;
+        ArrayList<Integer> temp = new ArrayList<>();
+        
+        while(curr !=null){
+            
+        
+        if(!isleaf(curr)){
+            temp.add(curr.data);
+        }
+        if(curr.right!=null){
+            curr=curr.right;
+            
+        }
+        else{
+            curr = curr.left;
+        }
+        
+        }
+        for(int i=temp.size()-1;i>=0;i--){
+            res.add(temp.get(i));
+        }
+    }
+    void leaf(Node node, List<Integer> res){
+        
+        if(isleaf(node)){
+            res.add(node.data);
+            return;
+        }
+        if(node.left != null){
+            leaf(node.left,res);
+        }
+        if(node.right !=null){
+            leaf(node.right,res);
+        }
+        
+    }
+    ArrayList<Integer> print(Node node){
+        ArrayList<Integer> res = new ArrayList<>();
+        if(!isleaf(node)){
+        res.add(node.data);
+        }
+        
+        left(node,res);
+        leaf(node,res);
+        right(node,res);
+        return res;
+    }
+	ArrayList <Integer> boundary(Node node)
+	{
+	    ArrayList<Integer> ans = new ArrayList<>();
+	    ans = print(node);
+	    return ans;
+	    
+	}
+}
