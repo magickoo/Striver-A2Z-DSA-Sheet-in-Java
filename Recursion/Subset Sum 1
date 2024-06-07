@@ -1,0 +1,21 @@
+class Solution {
+    ArrayList<Integer> ans = new ArrayList<Integer>();
+    ArrayList<Integer> subsetSums(ArrayList<Integer> arr, int n) {
+        // code here
+        
+        backtrack(0,arr,n,0);
+        Collections.sort(ans);
+        return ans;
+    }
+    void backtrack(int i,ArrayList<Integer> arr,int n,int sum){
+        if(i== n){
+            ans.add(sum);
+            return ; 
+            
+        }
+        sum += arr.get(i);
+        backtrack(i+1,arr,n,sum);
+        sum -= arr.get(i);
+        backtrack(i+1,arr,n,sum);
+    }
+}
