@@ -1,0 +1,27 @@
+class Solution {
+    List<List<Integer>> ans = new ArrayList<>();
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+        Arrays.sort(nums);
+        HashSet<Integer> hs = new HashSet<>();
+        List<Integer> ds = new ArrayList<>();
+        backtrack(0,nums,ds,true);
+        
+        return ans;
+        
+    }
+    public void backtrack(int i, int[] nums,List<Integer> ds,Boolean isPicked){
+        if(i==nums.length){
+            ans.add(new ArrayList<Integer>(ds));
+            return;
+        }
+        if(i==0 ||  nums[i] != nums[i-1] || isPicked == true ){
+        ds.add(nums[i]);
+
+        backtrack(i+1,nums,ds,true);
+        ds.remove(ds.size()-1);
+        }
+        //notpick
+        backtrack(i+1,nums,ds,false);
+
+    }
+}
