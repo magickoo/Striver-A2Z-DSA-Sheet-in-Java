@@ -1,0 +1,52 @@
+// m is the given matrix and n is the order of matrix
+class Solution {
+    public static ArrayList<String> findPath(int[][] m, int n) {
+        // Your code here
+        int vis[][] = new int[n][n];
+        //initial 0
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                vis[i][j] = 0;
+            }
+        }
+        ArrayList<String> ans = new ArrayList<>();
+        if(m[0][0] == 1){
+            solve(0,0,m,vis,ans,"" ,n);
+        }
+        return ans;
+    }
+    public static void solve(int i,int j,int[][]m,int vis[][],ArrayList<String> ans,String s,int n){
+        // base case
+        if(i== n-1 && j== n-1){
+            ans.add(s);
+            return;
+        }
+        //down
+        if(i<n-1 && m[i+1][j] == 1 && vis[i+1][j] == 0 ){
+            vis[i][j] = 1;
+            solve(i+1,j,m,vis,ans,s+ "D",n);
+            vis[i][j] = 0;
+            
+        }
+        //left
+        if(j> 0 && m[i][j-1] == 1 && vis[i][j-1]== 0){
+            vis[i][j] = 1;
+            solve(i,j-1,m,vis,ans,s + "L",n);
+            vis[i][j] = 0;
+        }
+        //right
+        if(j < n-1 && m[i][j+1] == 1 && vis[i][j+1]== 0){
+            vis[i][j] = 1;
+            solve(i,j+1,m,vis,ans,s + "R",n);
+            vis[i][j] = 0;
+        }
+        //up
+        if(i> 0 && m[i-1][j] == 1 && vis[i-1][j]== 0){
+            vis[i][j] = 1;
+            solve(i-1,j,m,vis,ans,s + "U",n);
+            vis[i][j] = 0;
+        }
+        
+        
+    }
+}
