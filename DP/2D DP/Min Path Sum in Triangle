@@ -1,0 +1,30 @@
+class Solution {
+    public int minimumTotal(List<List<Integer>> triangle) {
+
+        int n= triangle.size();
+        //int n= triangle.get(0).size();
+        int dp[][] = new int[n][n];
+        for(int[] arr: dp){
+            Arrays.fill(arr,-1);
+        }
+        return f(0,0,triangle,dp);
+    }
+    public int f(int i,int j ,List<List<Integer>> triangle, int[][] dp){
+
+    int n= triangle.size();
+
+    //base case
+    if(i== n-1){
+        return triangle.get(i).get(j);
+    }
+    if(dp[i][j] != -1){
+        return dp[i][j];
+    }
+    int down = triangle.get(i).get(j) + f(i+1,j,triangle,dp);
+    int diag = triangle.get(i).get(j) + f(i+1,j+1,triangle,dp);
+    
+    return dp[i][j] = Math.min(down,diag);
+
+    }
+    
+}
