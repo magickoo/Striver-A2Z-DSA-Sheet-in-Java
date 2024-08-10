@@ -1,0 +1,52 @@
+public class Main
+{
+	public static void main(String[] args) {
+	    
+		Person p1 = new Person();
+		p1.name = "Shyam";
+		p1.age= 21;
+		//System.out.println(p1.name + " " + p1.age);
+		p1.walk();
+		
+		Person p2 = new Person();
+		p2.name = "Anianiya";
+		p2.age = 22;
+		p2.walk(2);
+		
+		
+		Person p3 = new Person("Khushi",21);
+		p3.eat();
+		System.out.println(Person.count);
+	}
+}
+
+class Person{
+    String name;
+    int age;
+    
+    static int count;
+    //constructor
+    public Person(){
+        count++;
+        System.out.println("object created");
+    }
+    public Person(String name, int age){
+        this();
+        this.name = name;
+        this.age = age;
+        
+    }
+    void walk(){
+        System.out.println(name + " is walking");
+        
+    }
+    void eat(){
+        System.out.println(name + " is eating");
+    }
+    
+    //overloading
+    void walk(int steps){
+        System.out.println(name + " walked " + steps + " steps");
+    }
+    
+}
