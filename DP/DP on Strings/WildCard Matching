@@ -1,0 +1,38 @@
+class Solution {
+    public boolean isMatch(String s, String p) {
+        int n = s.length();
+        int m = p.length();
+        boolean ans = f(n-1,m-1,s, p);
+        return ans;
+    }
+    public boolean isAllStars(String p, int j){
+        for(int i=0;i<=j;i++){
+            if(p.charAt(i) != '*'){
+                return false;
+            }
+        
+        }
+        return true;
+    }
+    public boolean f(int i,int j,String s, String p){
+        //base case
+        if(i<0 && j<0){
+            return true;
+        }
+        if(j<0 && i>=0) return false;
+        if(i<0 && j>=0 ){
+            return isAllStars(p,j);
+        }
+
+        if(s.charAt(i) == p.charAt(j) || p.charAt(j) == '?'){
+            return f(i-1,j-1,s,p);
+        }
+        else if(p.charAt(j) == '*'){
+            return f(i-1,j,s,p) || f(i,j-1,s,p);
+        }
+        else{
+            return false;
+        }
+
+    }
+}
